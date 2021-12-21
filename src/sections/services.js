@@ -37,7 +37,7 @@ const Services = () => {
       <Container>
         <SectionHeading
           sx={styles.heading}
-          title="Você gostaria de entender melhor os resultados de uso do Hearing Guardian?"
+          title="Você gostaria de entender melhor os resultados de seu Hearing Guardian?"
           description="Um fonoaudiólogo irá te ajudar. Confira o vídeo para entender como:"
         />
           <Box style={{

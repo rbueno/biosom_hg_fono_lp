@@ -24,10 +24,10 @@ const Banner = () => {
         <Box sx={styles.contentWrapper}>
           <Box sx={styles.content}>
             <Heading as="h1">
-            Seja avaliado por um Fonoaudiólogo
+            Seja Avaliado por um Fonoaudiólogo Gratuitamente.
             </Heading>
             <Text as="p">
-              Um fonoaudiólogo irá verificar o seu uso do Hearing Guardian, avaliar seus resultados e te enviará uma análise completa.
+              Um fonoaudiólogo irá verificar o seu uso do Hearing Guardian, avaliar seus resultados e te enviará uma análise completa e gratuita.
             </Text>
             {/* <Box sx={styles.subscribe}>
               <Label htmlFor="email" variant="styles.srOnly">
