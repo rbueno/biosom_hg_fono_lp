@@ -10,10 +10,15 @@ import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
 const SubscribeUs = () => {
   const [checked, setChecked] = useState(false);
+  const [checkedError, setCheckedError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, subscribe) => {
     e.preventDefault();
-    console.log('submitted.');
+    if (!checked) {
+      setCheckedError(true)
+      return
+    }
+    subscribe({ EMAIL: e.target[0].value })
   };
 
   const handleCheckbox = () => {
@@ -22,7 +27,6 @@ const SubscribeUs = () => {
 
   return (
     <div>
-          <MailchimpSubscribe url='https://biosom.us19.list-manage.com/subscribe/post?u=fc637f151bb04c5703c01cde4&amp;id=3324ecbe17' />
     <Box as="section" sx={styles.section} variant="section.subscribe">
       <Container>
         <Box sx={styles.contentWrapper}>
@@ -31,12 +35,11 @@ const SubscribeUs = () => {
             title="Quer receber a avaliação de um fonoaudiólogo?"
             description="Utilize O Hearing Guardian por no mínimo 3 dias seguidos por 1 hora cada dia; informe aqui o mesmo email que você utilizou para criar uma conta no Hearing Guardian."
           />
-          <Box as="form" sx={styles.subscribe} onSubmit={handleSubmit}>
-
-          
-
-
-
+          <MailchimpSubscribe
+            url='https://biosom.us19.list-manage.com/subscribe/post?u=fc637f151bb04c5703c01cde4&amp;id=3324ecbe17'
+            render={({ subscribe, status, message }) => (
+              <div>
+        <Box as="form" sx={styles.subscribe} onSubmit={(e) => handleSubmit(e, subscribe)}>
             <Flex sx={styles.formGroup}>
               <Label htmlFor="subs-email" variant="styles.srOnly">
                 Email
@@ -58,14 +61,15 @@ const SubscribeUs = () => {
                 />
                 Este é o mesmo email que eu utilizei no Hearing Guardian.
               </Label>
-              {/* <Checkbox
-                id="no_spam"
-                checked={checked}
-                onChange={handleCheckbox}
-                label="Don’t provide any promotional message."
-              /> */}
             </Box>
           </Box>
+        {status === "sending" && <div style={{ color: "blue" }}>cadastrando...</div>}
+        {status === "error" && <div style={{ color: "red" }} dangerouslySetInnerHTML={{__html: message}}/>}
+        {checkedError && <div style={{ color: "green" }}>Confirme que o email está correto!</div>}
+        {status === "success" && <div style={{ color: "green" }}>Cadastro Realizado!</div>}
+      </div>
+    )}
+  />
         </Box>
       </Container>
     </Box>
