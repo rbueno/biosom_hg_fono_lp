@@ -18,6 +18,7 @@ const SubscribeUs = () => {
       setCheckedError(true)
       return
     }
+    setCheckedError(false)
     subscribe({ EMAIL: e.target[0].value })
   };
 
@@ -65,8 +66,8 @@ const SubscribeUs = () => {
           </Box>
         {status === "sending" && <div style={{ color: "blue" }}>cadastrando...</div>}
         {status === "error" && <div style={{ color: "red" }} dangerouslySetInnerHTML={{__html: message}}/>}
-        {checkedError && <div style={{ color: "green" }}>Confirme que o email está correto!</div>}
-        {status === "success" && <div style={{ color: "green" }}>Cadastro Realizado!</div>}
+        {checkedError && <div style={{ color: "red" }}>Confirme que o email está correto!</div>}
+        {status === "success" && <div style={{ color: "green" }}>Cadastro realizado na fila de avaliação!</div>}
       </div>
     )}
   />
